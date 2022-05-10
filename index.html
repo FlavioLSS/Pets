@@ -51,7 +51,7 @@
                 <label for="email2"><h4>Confirmação de e-mail</h4></label>
                 <input type="text" id="email2" class="txt">
                 <label for="wpp"><h4>Whatsapp</h4></label>
-                <input type="number" class="txt masked" id="wpp" data-mask='(##) # ####-####'>
+                <input type="text" class="txt masked" id="wpp" data-mask='(##) # ####-####'>
                 
                 <label for="cep"><h4>Endereço</h4></label>
                 <input onblur="getCep()" placeholder="Digite o CEP" id="find" class="txt2"> <input placeholder="Endereço" id="address" class="txt2">
@@ -80,7 +80,7 @@
             let teste = document.getElementById('find').value
             
             if (teste.length > 0){
-                setTimeout(() => {
+               
                 axios.get(`https://viacep.com.br/ws/${teste}/json/`).then(response => 
                 (
                     address.value = response.data.logradouro,
@@ -100,7 +100,6 @@
                     console.log('Erro: ' + err)
                 ))
 
-                })
         }
       }
     </script>
