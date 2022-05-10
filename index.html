@@ -78,7 +78,7 @@
 
         function getCep(){
             let teste = document.getElementById('find').value
-            }
+            
             if (teste.length > 0){
                 setTimeout(() => {
                 axios.get(`https://viacep.com.br/ws/${teste}/json/`).then(response => 
@@ -90,7 +90,7 @@
                     state.value = response.data.uf
                 ))
                 .catch(err => (
-                    alert('Erro ao consultar cep, tente novamente.'),
+                    alert('Erro ao consultar o CEP, tente novamente.'),
                     address.value = '',
                     complement.value = '',
                     district.value = '',
@@ -100,8 +100,9 @@
                     console.log('Erro: ' + err)
                 ))
 
-            }
+                })
         }
+      }
     </script>
 </body>
 </html>
