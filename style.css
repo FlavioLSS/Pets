@@ -10,7 +10,6 @@ body{
     display: flex;
 }
 
-
 ::-webkit-scrollbar{
     width:20px;
 }
@@ -109,9 +108,9 @@ h4{
 
 .form{
     background-color: white;
-    height: 100vh;
+    height: 100%;
     max-width: 800px;
-    margin: 0px auto;
+    margin: 10px auto;
     border: groove 2px;
 }
 
@@ -143,6 +142,17 @@ h4{
     border: 1px solid gray;
 }
 
+.txt2{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    padding: 5px;
+    width: 285px;
+    margin: 5px;
+    height: 25px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}
+
 .area{
     width: 615px;
     border: 1px solid gray;
@@ -152,7 +162,7 @@ h4{
 }
 
 .bot3{
-    margin-top: 10px;
+    margin: 10px;
     width: 400px;
     height: 50px;
     cursor: pointer;
@@ -167,4 +177,31 @@ h4{
 
 .bot3:hover{
     background-color: rgb(255, 164, 60);
+}
+
+/* Cep */
+
+.lds-dual-ring {
+  display: none;
+  width: 80px;
+  height: 80px;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

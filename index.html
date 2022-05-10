@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/maska@latest/dist/maska.js"></script>
     <title>Faça seu cadastro</title>
 </head>
@@ -39,26 +40,68 @@
                 </tr>
               </table>
               <div class="form-txt">
-                <h4>Data</h4>
-                <input class="txt masked" data-mask='##/##/####'>
-                <h4>Nome</h4>
-                <input type="text" class="txt">
-                <h4>Apelido</h4>
-                <input type="text" class="txt">
-                <h4>E-mail</h4>
-                <input type="text" class="txt">
-                <h4>Confirmação de e-mail</h4>
-                <input type="text" class="txt">
-                <h4>Whatsapp</h4>
-                <input class="txt masked" data-mask='(##) # ####-####'>
-                <h4>Sobre Você</h4>
-                <textarea class="area" name="" id="" cols="30" rows="10"></textarea>
+                <label for="data"><h4>Data</h4></label>
+                <input class="txt masked" id="data" data-mask='##/##/####'>
+                <label for="nome"><h4>Nome</h4></label>
+                <input type="text" id="nome" class="txt">
+                <label for="apelido"><h4>Apelido</h4></label>
+                <input type="text" id="apelido" class="txt">
+                <label for="email"><h4>E-mail</h4></label>
+                <input type="text" id="email" class="txt">
+                <label for="email2"><h4>Confirmação de e-mail</h4></label>
+                <input type="text" id="email2" class="txt">
+                <label for="wpp"><h4>Whatsapp</h4></label>
+                <input type="number" class="txt masked" id="wpp" data-mask='(##) # ####-####'>
+                
+                <label for="cep"><h4>Endereço</h4></label>
+                <input onblur="getCep()" placeholder="Digite o CEP" id="find" class="txt2"> <input placeholder="Endereço" id="address" class="txt2">
+                <input placeholder="Complemento" id="complement" class="txt2"> <input placeholder="Bairro" id="district" class="txt2">
+                <input placeholder="Cidade" id="city" class="txt2"> <input placeholder="Estado" id="state" class="txt2">
+
+                <label for="about"><h4>Sobre Você</h4></label>
+                <textarea class="area" name="" id="about" cols="30" rows="10"></textarea>
               </div>
             <button class="bot3">SALVAR</button>
         </div>
     </div>
     <script>
       var mask = Maska.create('.masked')
+    </script>
+
+    <script>
+        let finder = document.getElementById('find')
+        let address = document.getElementById('address')
+        let complement = document.getElementById('complement')
+        let district = document.getElementById('district')
+        let city = document.getElementById('city')
+        let state = document.getElementById('state')
+
+        function getCep(){
+            let teste = document.getElementById('find').value
+            }
+            if (teste.length > 0){
+                setTimeout(() => {
+                axios.get(`https://viacep.com.br/ws/${teste}/json/`).then(response => 
+                (
+                    address.value = response.data.logradouro,
+                    complement.value = response.data.complemento ? response.data.complemento : 'Não possui complemento',
+                    district.value = response.data.bairro,
+                    city.value = response.data.localidade,
+                    state.value = response.data.uf
+                ))
+                .catch(err => (
+                    alert('Erro ao consultar cep, tente novamente.'),
+                    address.value = '',
+                    complement.value = '',
+                    district.value = '',
+                    city.value = '',
+                    state.value = '',
+                    finder.value = '',
+                    console.log('Erro: ' + err)
+                ))
+
+            }
+        }
     </script>
 </body>
 </html>
